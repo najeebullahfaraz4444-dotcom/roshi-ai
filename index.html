@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roshi AI</title>
+<style>
+body {font-family: Arial; background: #667eea; text-align:center; padding:20px; color:white;}
+.box {background:white; color:#333; max-width:500px; margin:auto; padding:20px; border-radius:15px;}
+input {width:80%; padding:10px; border-radius:8px; border:2px solid #667eea;}
+button {padding:10px 20px; background:#667eea; color:white; border:none; border-radius:8px; margin-top:10px;}
+#output {background:#f0f0ff; margin-top:15px; padding:10px; border-radius:8px; min-height:50px;}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>🤖 Roshi AI</h1>
+<input type="text" id="question" placeholder="سوال لکھیں...">
+<br>
+<button onclick="sendMsg()">Send</button>
+<div id="output"></div>
+</div>
+<script>
+function sendMsg() {
+  let q = document.getElementById("question").value.toLowerCase();
+  let ans = "میں Roshi AI ہوں۔ آپ کیسے ہیں؟ 😊";
+  document.getElementById("output").innerText = ans;
+}
+</script>
+</body>
+</html>
