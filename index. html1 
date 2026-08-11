@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roshi AI - Your Smart Assistant</title>
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif; 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  text-align:center; padding:20px; color:white; min-height:100vh;
+}
+.box {background:white; color:#333; max-width:600px; margin:auto; padding:30px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+h1 {color:#667eea; font-size:32px;}
+input {width:80%; padding:12px; border-radius:10px; border:2px solid #667eea; font-size:16px;}
+button {padding:12px 25px; background:#667eea; color:white; border:none; border-radius:10px; margin-top:15px; cursor:pointer; font-size:16px; font-weight:bold;}
+button:hover {background:#764ba2;}
+#output {background:#f8f9ff; margin-top:20px; padding:15px; border-radius:10px; min-height:60px; text-align:right; border:2px solid #667eea; font-size:16px;}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>🤖 Roshi AI</h1>
+<p>آپ کا سمارٹ اسسٹنٹ</p>
+<input type="text" id="question" placeholder="اپنا سوال یہاں لکھیں...">
+<br>
+<button onclick="sendMsg()">Send / بھیجیں</button>
+<div id="output"></div>
+</div>
+
+<script>
+function sendMsg() {
+  let q = document.getElementById("question").value.toLowerCase();
+  let ans = "آپ نے پوچھا: " + q + " \n\nابھی میں اس کا جواب نہیں جانتا۔ جلد سیکھ جاؤں گا! 😅";
+  
+  if(q.includes("hello") || q.includes("hi") || q.includes("ہیلو") || q.includes("سلام")) {
+    ans = "ہیلو! میں Roshi AI ہوں۔ آپ کیسے ہیں؟ 😊";
+  }
+  else if(q.includes("نام") || q.includes("name")) {
+    ans = "میرا نام Roshi AI ہے۔ میں آپ کی مدد کے لیے بنایا گیا ہوں۔";
+  }
+  else if(q.includes("کیسے") || q.includes("how")) {
+    ans = "میں بالکل ٹھیک ہوں، شکریہ! آپ سنائیں؟";
+  }
+  else if(q.includes("لطیفہ") || q.includes("joke")) {
+    ans = "ایک استاد: بتاؤ 2+2 کتنے ہوتے ہیں؟ \nشاگرد: سر جی مہنگائی کے حساب سے 10 ہوتے ہیں 😂";
+  }
+  else if(q.includes("شاعری") || q.includes("poetry")) {
+    ans = "دل سے جو بات نکلتی ہے اثر رکھتی ہے \nپر نہیں طاقتِ پرواز مگر رکھتی ہے";
+  }
+  
+  document.getElementById("output").innerText = ans;
+}
+</script>
+</body>
+</html>
