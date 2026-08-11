@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roshi AI - Smart Assistant</title>
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  text-align:center; padding:20px; color:white; min-height:100vh;
+}
+.box {background:white; color:#333; max-width:700px; margin:auto; padding:30px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,.3);}
+h1 {color:#667eea;}
+input {width:70%; padding:12px; border-radius:10px; border:2px solid #667eea; font-size:16px;}
+button {padding:12px 25px; background:#667eea; color:white; border:none; border-radius:10px; margin-left:10px; cursor:pointer; font-weight:bold;}
+#reply {margin-top:20px; padding:15px; background:#f0f0ff; border-radius:10px; text-align:left; min-height:100px; white-space:pre-wrap;}
+</style>
+</head>
+<body>
+  <div class="box">
+    <h1>🤖 Roshi AI Pro</h1>
+    <p>Ab Mai Asli AI Hun!</p>
+    <input type="text" id="userInput" placeholder="Koi bhi sawal poochen...">
+    <button onclick="sendMsg()">Send</button>
+    <div id="reply">Mai har sawal ka jawab dunga 😊</div>
+  </div>
+
+<script>
+const API_KEY ="×" "AQ.Ab8RN6ILAUMzO
+"×"-bXSlePv7E5-MYkG2cIK_Uvtb5-dfUseIRChw";
+
+async function sendMsg() {
+  let msg = document.getElementById("userInput").value;
+  let replyBox = document.getElementById("reply");
+  
+  if(msg.trim() === "") return;
+  
+  replyBox.innerHTML = "Roshi soch raha hai... 🤔";
+  
+  try {
+    let response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        contents: [{parts: [{text: "Tum Roshi AI ho, Urdu mai dostana lehje mai jawab do. Sawal: " + msg}]}]
+      })
+    });
+    
+    let data = await response.json();
+    let aiReply = data.candidates[0].content.parts[0].text;
+    replyBox.innerHTML = "<b>Roshi:</b> " + aiReply;
+    
+  } catch(error) {
+    replyBox.innerHTML = "Error: Key check karein ya internet dekhein";
+  }
+  
+  document.getElementById("userInput").value = "";
+}
+</script>
+</body>
+</html>
