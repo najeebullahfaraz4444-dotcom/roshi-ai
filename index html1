@@ -1,3 +1,0 @@
-const API_KEY = "AQ.Ab8RN6J77iq1wyd4t4QAhhVK2Kz0SYsXs9v8360LMsLHxoSdw";
-const api,key{method: "POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:message}]}]})});
-const data=await r.json(); wait.textContent=data.candidates[0].content.parts[0].text || "جواب نہیں ملا";
