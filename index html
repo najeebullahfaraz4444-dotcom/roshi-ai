@@ -1,2 +1,0 @@
-const r=await fetch("/api/chat",{method: "POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message})});
-const data=await r.json(); wait.textContent=data.reply||data.error||"جواب نہیں ملا";
