@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roshi AI - Your Smart Assistant</title>
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  text-align:center; padding:20px; color:white; min-height:100vh;
+}
+.box {background:white; color:#333; max-width:600px; margin:auto; padding:30px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,.3);}
+h1 {color:#667eea; font-size:32px;}
+input {width:70%; padding:12px; border-radius:10px; border:2px solid #667eea; font-size:16px;}
+button {padding:12px 25px; background:#667eea; color:white; border:none; border-radius:10px; margin-left:10px; cursor:pointer; font-size:16px; font-weight:bold;}
+button:hover {background:#764ba2;}
+#reply {margin-top:20px; padding:15px; background:#f0f0ff; border-radius:10px; text-align:left; min-height:50px;}
+</style>
+</head>
+<body>
+  <div class="box">
+    <h1>🤖 Roshi AI</h1>
+    <p>Your Smart Assistant is Ready</p>
+    <input type="text" id="userInput" placeholder="Yahan kuch likhen...">
+    <button onclick="sendMsg()">Send</button>
+    
+    <div id="reply"></div>
+  </div>
+
+<script>
+function sendMsg() {
+  let msg = document.getElementById("userInput").value;
+  let replyBox = document.getElementById("reply");
+  
+  if(msg.toLowerCase().includes("hi") || msg.toLowerCase().includes("hello")){
+    replyBox.innerHTML = "<b>Roshi:</b> Hello! Mai Roshi AI hun. Ap kaisy hain? 😊";
+  }
+  else if(msg.toLowerCase().includes("naam")){
+    replyBox.innerHTML = "<b>Roshi:</b> Mera naam Roshi AI hai. Mai apka smart assistant hun!";
+  }
+  else if(msg.toLowerCase().includes("mosam")){
+    replyBox.innerHTML = "<b>Roshi:</b> Mai abhi mosam check nahi kar sakta, lekin Karachi mai garmi hogi 🔥";
+  }
+  else {
+    replyBox.innerHTML = "<b>Roshi:</b> Apne kaha: " + msg + "<br>Ye bohat achi baat hai!";
+  }
+  
+  document.getElementById("userInput").value = "";
+}
+</script>
+</body>
+</html>
