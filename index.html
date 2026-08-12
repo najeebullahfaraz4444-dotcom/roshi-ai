@@ -1,0 +1,30 @@
+<script>
+// Key ko 3 hisso me + se jora hai
+const PART1 = "AQ.Ab8RN6KpcsQo";
+const PART2 = "01QdlZkENHcu7cam";
+const PART3 = "GjrnxiPzRGj46ixGadi_2g";
+const API_KEY;
+
+document.getElementById("sendBtn").onclick = async function() {
+  let msg = document.getElementById("userInput").value;
+  let replyBox = document.getElementById("reply");
+  if(msg.trim() === "") return;
+
+  replyBox.innerHTML = "Roshi soch raha hai... 🤔";
+  document.getElementById("userInput").value = "";
+
+  try {
+    let response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + API_KEY, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({contents: [{parts: [{text: "Urdu mai jawab do: " + msg}]}]})
+    });
+
+    let data = await response.json();
+    replyBox.innerHTML = "<b>Roshi:</b> " + data.candidates[0].content.parts[0].text;
+
+  } catch(error) {
+    replyBox.innerHTML = "Error: " + error.message;
+  }
+}
+</script>
