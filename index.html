@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head><meta charset="UTF-8"><title>Roshi AI</title>
+<style>
+body{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);text-align:center;padding:20px;color:white;margin:0;font-family:Arial}
+.box{background:white;color:#333;max-width:500px;margin:40px auto;padding:30px;border-radius:20px}
+input{width:70%;padding:12px;border-radius:10px;border:2px solid #667eea;font-size:16px;direction:rtl}
+button{padding:12px 18px;background:#667eea;color:white;border:none;border-radius:10px;cursor:pointer;font-size:16px}
+#reply{margin-top:20px;padding:15px;background:#f8f9ff;border-radius:10px;text-align:right;min-height:120px;border:2px solid #e0e0ff;direction:rtl}
+</style></head>
+<body>
+<div class="box">
+<h1 style="color:#667eea">🤖 Roshi AI</h1>
+<p>Apka Urdu AI Dost</p>
+<input type="text" id="userInput" placeholder="Yahan sawal likhen...">
+<button id="sendBtn">Send</button>
+<div id="reply">Salam! Mai Roshi hun. Kuch bhi pooch lein 😊</div>
+</div>
+<script>
+// ===== YAHAN KEY LAGAO =====
+const API_KEY = "AQ.Ab8RN6IxErkodfK28MGj7KtcseWNpPulTR-MjCmW2C"
+"P4KTlQ0g";
+// ============================
+
+document.getElementById("sendBtn").onclick = async function() {
+  let msg = document.getElementById("userInput").value;
+  let replyBox = document.getElementById("reply");
+  if(msg.trim() === ""){alert("Pehle sawal likhen");return;}
+  if(API_KEY === "AQ.Ab8RN6IxErkodfK28MGj7KtcseWNpPulTR-MjCmW2C"
+"P4KTlQ0g"){alert("Pehle API Key lagao upar code mai");return;}
+
+  replyBox.innerHTML = "Roshi soch raha hai... 🤔";
+  document.getElementById("userInput").value = "";
+
+  try {
+    let res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key="+API_KEY,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({contents:[{parts:[{text:"Tum Roshi ho. Urdu mai jawab do: "+msg}]}]})
+    });
+    let data = await res.json();
+    replyBox.innerHTML = "<b>Roshi:</b> " + data.candidates[0].content.parts[0].text;
+  } catch(e) {
+    replyBox.innerHTML = "<b>Error:</b> " + e.message + "<br><br>1. Key sahi hai? 2. Internet hai?";
+  }
+}
+</script>
+</body></html>
